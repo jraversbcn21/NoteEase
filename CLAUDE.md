@@ -8,6 +8,12 @@ Extensión de Chrome (Manifest V3) para tomar notas rápidas desde el toolbar de
 - Chrome Extensions API (Manifest V3)
 - `chrome.storage.local` para persistencia
 
+## Repositorio
+
+- GitHub: https://github.com/jraversbcn21/NoteEase
+- Branch principal: `master`
+- Licencia: MIT
+
 ## Estructura
 
 ```
@@ -18,6 +24,10 @@ formatting.js      — Motor de formateo (Selection/Range API)
 notes.js           — Gestión de múltiples notas (CRUD + migración)
 style.css          — Estilos con CSS custom properties (light/dark)
 icons/             — Iconos 16/48/128 (png + ico)
+screenshots/       — Capturas de pantalla (light.png, dark.png)
+LICENSE            — MIT
+README.md          — Documentación pública del proyecto
+.gitignore         — Thumbs.db, .DS_Store, *.crx, node_modules
 ```
 
 ## Funcionalidades implementadas
@@ -27,10 +37,13 @@ icons/             — Iconos 16/48/128 (png + ico)
 - Migración automática desde v1.3 (nota única → esquema multi-nota)
 - Formateo inline: negrita, cursiva, subrayado, tachado (via Selection/Range API)
 - **Formateo de bloques**: H1, H2, listas con viñetas, listas numeradas
-- Paleta de colores (rojo, azul, verde, negro) con indicador visual
-- **Exportar como HTML** (preserva formato) o TXT (texto plano)
+- Paleta de colores (rojo, azul, verde, negro/blanco) con indicador visual
+- **Exportar como HTML** (preserva formato) o TXT (texto plano) via dropdown vertical
 - **Atajos de teclado**: Ctrl+B (negrita), Ctrl+I (cursiva), Ctrl+U (subrayado)
-- **Tema oscuro/claro** con toggle y persistencia de preferencia
+- **Tema oscuro/claro** con toggle, persistencia y contraste adaptativo
+  - Swap automático de colores inline al cambiar tema (negro ↔ blanco)
+  - Paleta de colores se adapta al tema (swatch negro → blanco en dark mode)
+  - Color activo por defecto se ajusta al tema
 - Placeholder cuando el editor está vacío
 - Estado activo de botones sincronizado con la selección
 
@@ -50,6 +63,16 @@ Gestión de múltiples notas con migración:
 - `create()` / `delete(id)` — CRUD de notas
 - `save(content)` / `getActive()` — Persistencia de nota activa
 - `setActive(id)` — Cambiar nota activa
+
+## Esquema de storage
+
+```js
+{
+  notes: [{ id, title, content, createdAt, updatedAt }],
+  activeNoteId: "note_...",
+  theme: "light" | "dark"
+}
+```
 
 ## Comandos
 
