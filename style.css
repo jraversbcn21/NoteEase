@@ -1,0 +1,141 @@
+body {
+    width: 400px;  /* Set the popup width */
+    height: 600px; /* Set the popup height to match width for a square */
+    min-width: 400px; /* Ensure minimum width */
+    min-height: 500px; /* Ensure minimum height */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #ffffff; /* White background for cleanliness */
+    display: flex;
+    flex-direction: column; /* Use column layout to arrange title, editor, and toolbar */
+}
+
+.header {
+    text-align: left;
+    padding: 0px 0;
+    font-size: 10px;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 1px solid #ccc; /* Optional separator line */
+    margin-bottom: 10px;
+}
+
+#editor {
+    border: 1px solid #ccc;
+    padding: 10px;
+    height: 100px; /* Adjusted height to allow room for title and toolbar */
+    width: 96%;
+    overflow-y: auto;
+    resize: none; /* Prevent manual resizing */
+    border-radius: 5px; /* Slightly rounded corners for aesthetics */
+    background-color: #fafafa; /* Light background for the editor */
+    flex-grow: 1; /* Allow editor to take up available space */
+    font-size: 16px;
+}
+
+#editor.placeholder {
+    color: #aaa;
+}
+
+/* Toolbar moved to the bottom */
+.toolbar {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap if necessary */
+    gap: 10px;
+    margin-top: 10px; /* Add some space from the editor */
+    justify-content: center; /* Center the buttons */
+}
+
+.toolbar button {
+    width: 40px; /* Adjusted size for better visibility */
+    height: 40px;
+    padding: 0;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #f0f0f0; /* Light gray background */
+    border: 1px solid #ccc; /* Border for distinction */
+    border-radius: 50%; /* Round buttons */
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toolbar button:hover {
+    background-color: #e0e0e0; /* Slightly darker on hover */
+}
+
+.toolbar button:active {
+    transform: scale(0.95); /* Slight shrink on click */
+}
+
+/* Color indicator dot inside textColorBtn */
+#textColorBtn {
+    position: relative;
+    flex-direction: column;
+    gap: 2px;
+}
+
+#colorIndicator {
+    display: block;
+    width: 14px;
+    height: 4px;
+    border-radius: 2px;
+    background-color: #1a1a1a;
+}
+
+/* Active State for Buttons */
+.toolbar button.active {
+    background-color: #d0d0d0; /* Darker background when active */
+}
+
+
+/* Color Palette */
+.color-palette {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    padding: 8px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 6px;
+}
+
+.color-palette.hidden {
+    display: none;
+}
+
+.color-swatch {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.15s, border-color 0.15s;
+}
+
+.color-swatch:hover {
+    transform: scale(1.15);
+    border-color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    body {
+        width: 100%; /* Make the popup responsive */
+        height: 100%; /* Keep height equal to width for square */
+    }
+
+    .toolbar button {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+
+    #editor {
+        height: 350px;
+    }
+}

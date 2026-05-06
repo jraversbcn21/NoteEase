@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>NoteEase</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Title at the top -->
+    <div class="header">
+        <h1>NoteEase</h1>
+    </div>
+
+    <!-- Editor for notes -->
+    <div id="editor" contenteditable="true">
+        Escribe tus notas aquí...
+    </div>
+
+    <!-- Toolbar moved to the bottom -->
+    <div class="toolbar">
+        <button id="boldBtn" title="Bold"><strong>B</strong></button>
+        <button id="underlineBtn" title="Underline"><u>U</u></button>
+        <button id="italicBtn" title="Italic"><em>I</em></button>
+        <button id="strikethroughBtn" title="Strikethrough"><s>S</s></button>
+        <button id="textColorBtn" title="Text Color">
+            &#x1F3A8;
+            <span id="colorIndicator"></span>
+        </button>
+        <button id="saveBtn" title="Guardar Nota"><strong>💾</strong></button>
+    </div>
+
+    <!-- Color palette -->
+    <div id="colorPalette" class="color-palette hidden">
+        <div class="color-swatch" data-color="#e74c3c" style="background-color: #e74c3c;" title="Rojo"></div>
+        <div class="color-swatch" data-color="#2980b9" style="background-color: #2980b9;" title="Azul"></div>
+        <div class="color-swatch" data-color="#27ae60" style="background-color: #27ae60;" title="Verde"></div>
+        <div class="color-swatch" data-color="#1a1a1a" style="background-color: #1a1a1a;" title="Negro"></div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

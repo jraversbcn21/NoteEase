@@ -1,0 +1,11 @@
+Posibles nombres block de notas 
+-NoteMaster
+-QuickPad
+-TextFlow
+-SimpleWrite
+-NoteEase
+
+
+body 
+width 400
+height 450
