@@ -6,30 +6,49 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Title at the top -->
     <div class="header">
+        <button id="sidebarToggle" class="sidebar-toggle" title="Notas">&#9776;</button>
         <h1>NoteEase</h1>
+        <button id="themeToggle" class="theme-toggle" title="Cambiar tema">&#9790;</button>
     </div>
 
-    <!-- Editor for notes -->
-    <div id="editor" contenteditable="true">
-        Escribe tus notas aquí...
+    <div class="main-area">
+        <div id="sidebar" class="sidebar hidden">
+            <div class="sidebar-header">
+                <button id="newNoteBtn" title="Nueva nota">+</button>
+            </div>
+            <div id="noteList" class="note-list"></div>
+        </div>
+        <div id="editor" contenteditable="true">
+            Escribe tus notas aquí...
+        </div>
     </div>
 
-    <!-- Toolbar moved to the bottom -->
+    <div class="toolbar toolbar-block">
+        <button id="h1Btn" title="Heading 1">H1</button>
+        <button id="h2Btn" title="Heading 2">H2</button>
+        <button id="ulBtn" title="Lista con viñetas">&#8226;</button>
+        <button id="olBtn" title="Lista numerada">1.</button>
+    </div>
+
     <div class="toolbar">
-        <button id="boldBtn" title="Bold"><strong>B</strong></button>
-        <button id="underlineBtn" title="Underline"><u>U</u></button>
-        <button id="italicBtn" title="Italic"><em>I</em></button>
-        <button id="strikethroughBtn" title="Strikethrough"><s>S</s></button>
-        <button id="textColorBtn" title="Text Color">
+        <button id="boldBtn" title="Negrita (Ctrl+B)"><strong>B</strong></button>
+        <button id="underlineBtn" title="Subrayado (Ctrl+U)"><u>U</u></button>
+        <button id="italicBtn" title="Cursiva (Ctrl+I)"><em>I</em></button>
+        <button id="strikethroughBtn" title="Tachado"><s>S</s></button>
+        <button id="textColorBtn" title="Color de texto">
             &#x1F3A8;
             <span id="colorIndicator"></span>
         </button>
-        <button id="saveBtn" title="Guardar Nota"><strong>💾</strong></button>
+        <div class="save-wrapper">
+            <button id="saveBtn" title="Exportar nota"><strong>💾</strong></button>
+            <div id="saveDropdown" class="save-dropdown hidden">
+                <button id="saveTxt">TXT</button>
+                <button id="saveHtml">HTML</button>
+            </div>
+        </div>
     </div>
 
-    <!-- Color palette -->
     <div id="colorPalette" class="color-palette hidden">
         <div class="color-swatch" data-color="#e74c3c" style="background-color: #e74c3c;" title="Rojo"></div>
         <div class="color-swatch" data-color="#2980b9" style="background-color: #2980b9;" title="Azul"></div>
@@ -37,6 +56,8 @@
         <div class="color-swatch" data-color="#1a1a1a" style="background-color: #1a1a1a;" title="Negro"></div>
     </div>
 
+    <script src="formatting.js"></script>
+    <script src="notes.js"></script>
     <script src="popup.js"></script>
 </body>
 </html>

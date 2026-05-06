@@ -1,77 +1,155 @@
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #fafafa;
+    --bg-button: #f0f0f0;
+    --bg-button-hover: #e0e0e0;
+    --bg-button-active: #d0d0d0;
+    --text-primary: #333;
+    --text-placeholder: #aaa;
+    --border-color: #ccc;
+}
+
+[data-theme="dark"] {
+    --bg-primary: #1e1e1e;
+    --bg-secondary: #2d2d2d;
+    --bg-button: #3a3a3a;
+    --bg-button-hover: #4a4a4a;
+    --bg-button-active: #555;
+    --text-primary: #e0e0e0;
+    --text-placeholder: #666;
+    --border-color: #444;
+}
+
 body {
-    width: 400px;  /* Set the popup width */
-    height: 600px; /* Set the popup height to match width for a square */
-    min-width: 400px; /* Ensure minimum width */
-    min-height: 500px; /* Ensure minimum height */
+    width: 400px;
+    height: 600px;
+    min-width: 400px;
+    min-height: 500px;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 10px;
     box-sizing: border-box;
-    background-color: #ffffff; /* White background for cleanliness */
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     display: flex;
-    flex-direction: column; /* Use column layout to arrange title, editor, and toolbar */
+    flex-direction: column;
 }
 
 .header {
-    text-align: left;
-    padding: 0px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
     font-size: 10px;
     font-weight: bold;
-    color: #333;
-    border-bottom: 1px solid #ccc; /* Optional separator line */
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
     margin-bottom: 10px;
 }
 
+.header h1 {
+    margin: 5px 0;
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px 8px;
+    color: var(--text-primary);
+}
+
+.theme-toggle:hover {
+    opacity: 0.7;
+}
+
 #editor {
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     padding: 10px;
-    height: 100px; /* Adjusted height to allow room for title and toolbar */
+    height: 100px;
     width: 96%;
     overflow-y: auto;
-    resize: none; /* Prevent manual resizing */
-    border-radius: 5px; /* Slightly rounded corners for aesthetics */
-    background-color: #fafafa; /* Light background for the editor */
-    flex-grow: 1; /* Allow editor to take up available space */
+    resize: none;
+    border-radius: 5px;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    flex-grow: 1;
     font-size: 16px;
 }
 
 #editor.placeholder {
-    color: #aaa;
+    color: var(--text-placeholder);
 }
 
-/* Toolbar moved to the bottom */
+#editor h1 {
+    font-size: 1.4em;
+    margin: 4px 0;
+}
+
+#editor h2 {
+    font-size: 1.2em;
+    margin: 3px 0;
+}
+
+#editor ul, #editor ol {
+    margin: 4px 0;
+    padding-left: 24px;
+}
+
+#editor li {
+    margin: 2px 0;
+}
+
 .toolbar {
     display: flex;
-    flex-wrap: wrap; /* Allow buttons to wrap if necessary */
+    flex-wrap: wrap;
     gap: 10px;
-    margin-top: 10px; /* Add some space from the editor */
-    justify-content: center; /* Center the buttons */
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.toolbar-block {
+    gap: 6px;
+    margin-top: 8px;
 }
 
 .toolbar button {
-    width: 40px; /* Adjusted size for better visibility */
+    width: 40px;
     height: 40px;
     padding: 0;
     font-size: 16px;
     cursor: pointer;
-    background-color: #f0f0f0; /* Light gray background */
-    border: 1px solid #ccc; /* Border for distinction */
-    border-radius: 50%; /* Round buttons */
+    background-color: var(--bg-button);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
     transition: background-color 0.3s, transform 0.2s;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+.toolbar-block button {
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
 .toolbar button:hover {
-    background-color: #e0e0e0; /* Slightly darker on hover */
+    background-color: var(--bg-button-hover);
 }
 
 .toolbar button:active {
-    transform: scale(0.95); /* Slight shrink on click */
+    transform: scale(0.95);
 }
 
-/* Color indicator dot inside textColorBtn */
+.toolbar button.active {
+    background-color: var(--bg-button-active);
+}
+
 #textColorBtn {
     position: relative;
     flex-direction: column;
@@ -86,20 +164,13 @@ body {
     background-color: #1a1a1a;
 }
 
-/* Active State for Buttons */
-.toolbar button.active {
-    background-color: #d0d0d0; /* Darker background when active */
-}
-
-
-/* Color Palette */
 .color-palette {
     display: flex;
     gap: 8px;
     justify-content: center;
     padding: 8px;
-    background-color: #ffffff;
-    border: 1px solid #ccc;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     margin-top: 6px;
 }
@@ -122,11 +193,163 @@ body {
     border-color: #555;
 }
 
-/* Responsive Design */
+.save-wrapper {
+    position: relative;
+}
+
+.save-dropdown {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 8px;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.save-dropdown.hidden {
+    display: none;
+}
+
+.save-dropdown button {
+    width: 100%;
+    height: auto;
+    padding: 6px 20px;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 6px;
+    background-color: var(--bg-button);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.save-dropdown button:hover {
+    background-color: var(--bg-button-hover);
+}
+
+/* Sidebar */
+.sidebar-toggle {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px 8px;
+    color: var(--text-primary);
+}
+
+.sidebar-toggle:hover {
+    opacity: 0.7;
+}
+
+.main-area {
+    display: flex;
+    flex-grow: 1;
+    min-height: 0;
+    gap: 8px;
+}
+
+.sidebar {
+    width: 130px;
+    min-width: 130px;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.sidebar.hidden {
+    display: none;
+}
+
+.sidebar-header {
+    padding: 6px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar-header button {
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: var(--bg-button);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-header button:hover {
+    background-color: var(--bg-button-hover);
+}
+
+.note-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 4px;
+}
+
+.note-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.note-item:hover {
+    background-color: var(--bg-button-hover);
+}
+
+.note-item.active {
+    background-color: var(--bg-button-active);
+    font-weight: bold;
+}
+
+.note-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-grow: 1;
+}
+
+.note-delete {
+    background: none;
+    border: none;
+    color: var(--text-placeholder);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0 2px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.note-delete:hover {
+    color: #e74c3c;
+}
+
 @media (max-width: 600px) {
     body {
-        width: 100%; /* Make the popup responsive */
-        height: 100%; /* Keep height equal to width for square */
+        width: 100%;
+        height: 100%;
     }
 
     .toolbar button {

@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "NoteEase",
   "description": "A lightweight Chrome extension for quickly writing, formatting, and saving notes directly from your browser toolbar.",
-  "version": "1.3",
+  "version": "2.0",
   "action": {
     "default_popup": "popup.html",
     "default_icon": {

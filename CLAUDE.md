@@ -11,21 +11,45 @@ Extensión de Chrome (Manifest V3) para tomar notas rápidas desde el toolbar de
 ## Estructura
 
 ```
-manifest.json      — Configuración de la extensión (v1.3)
-popup.html         — UI del popup (editor + toolbar)
-popup.js           — Lógica: formateo, paleta de colores, guardado
-style.css          — Estilos del popup (400×600px)
+manifest.json      — Configuración de la extensión (v2.0)
+popup.html         — UI del popup (editor + sidebar + toolbars)
+popup.js           — Orquestador: conecta UI con módulos
+formatting.js      — Motor de formateo (Selection/Range API)
+notes.js           — Gestión de múltiples notas (CRUD + migración)
+style.css          — Estilos con CSS custom properties (light/dark)
 icons/             — Iconos 16/48/128 (png + ico)
 ```
 
 ## Funcionalidades implementadas
 
 - Editor contenteditable con persistencia automática via chrome.storage.local
-- Formateo de texto: negrita, cursiva, subrayado, tachado
+- **Múltiples notas** con sidebar colapsable (crear, cambiar, eliminar)
+- Migración automática desde v1.3 (nota única → esquema multi-nota)
+- Formateo inline: negrita, cursiva, subrayado, tachado (via Selection/Range API)
+- **Formateo de bloques**: H1, H2, listas con viñetas, listas numeradas
 - Paleta de colores (rojo, azul, verde, negro) con indicador visual
-- Exportar nota como archivo .txt (descarga con confirm dialog)
+- **Exportar como HTML** (preserva formato) o TXT (texto plano)
+- **Atajos de teclado**: Ctrl+B (negrita), Ctrl+I (cursiva), Ctrl+U (subrayado)
+- **Tema oscuro/claro** con toggle y persistencia de preferencia
 - Placeholder cuando el editor está vacío
-- Estado activo de botones de formato sincronizado con la selección
+- Estado activo de botones sincronizado con la selección
+
+## Módulos
+
+### formatting.js — NoteFormat
+Motor de formateo que reemplaza `document.execCommand()` (deprecado):
+- `init(editor)` — Inicializa con referencia al editor
+- `toggleInline(tagName)` — Toggle de STRONG, EM, U, S
+- `applyColor(color)` — Aplica color via span con style
+- `queryState(tagName)` — Consulta si el cursor está dentro de un tag
+- `toggleBlock(tagName)` — Toggle de H1, H2, UL, OL
+
+### notes.js — NoteManager
+Gestión de múltiples notas con migración:
+- `init(callback)` — Carga notas, migra desde v1.3 si necesario
+- `create()` / `delete(id)` — CRUD de notas
+- `save(content)` / `getActive()` — Persistencia de nota activa
+- `setActive(id)` — Cambiar nota activa
 
 ## Comandos
 
@@ -36,4 +60,4 @@ No hay build ni dependencias. Para desarrollar:
 
 ## Permisos
 
-- `storage` — guardar el contenido de las notas localmente
+- `storage` — guardar notas y preferencias (tema) localmente
