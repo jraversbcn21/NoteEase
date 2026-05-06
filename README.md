@@ -22,9 +22,7 @@ Extensión de Chrome ligera para tomar notas rápidas directamente desde el tool
 
 | Tema claro | Tema oscuro |
 |:---:|:---:|
-| ![Light theme](https://via.placeholder.com/200x350/ffffff/333?text=Light) | ![Dark theme](https://via.placeholder.com/200x350/1e1e1e/e0e0e0?text=Dark) |
-
-> Reemplaza las imágenes placeholder con capturas reales de la extensión.
+| ![Light theme](screenshots/light.png) | ![Dark theme](screenshots/dark.png) |
 
 ## Instalación
 
